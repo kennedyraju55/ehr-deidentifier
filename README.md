@@ -1,110 +1,86 @@
-# 🔐 EHR Deidentifier
+# 🔐 Ehr Deidentifier
 
-Automatically remove PHI from electronic health records for safe secondary use.
+HIPAA-compliant electronic health record de-identification
 
-[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue?logo=python)](https://www.python.org/)
-[![Ollama](https://img.shields.io/badge/Ollama-Local%20AI-ff6b6b?logo=ollama)](https://ollama.com)
-[![Gemma 3](https://img.shields.io/badge/Gemma%203-Powered-orange?logo=google)](https://ai.google.dev/gemma)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Privacy First](https://img.shields.io/badge/Privacy-First-purple)](README.md)
+![Python](https://img.shields.io/badge/Python-3.10+-blue) ![Ollama](https://img.shields.io/badge/Ollama-Local%20LLM-green) ![Gemma 3](https://img.shields.io/badge/Gemma%203-Google-orange) ![License](https://img.shields.io/badge/License-MIT-yellow) ![Privacy](https://img.shields.io/badge/Privacy-First-red)
 
 ## What It Does
 
-- Identifies and redacts Protected Health Information (PHI) from clinical documents
-- Preserves clinical meaning while removing patient identifiers (names, MRNs, dates)
-- Supports batch processing of entire EHR datasets for research and training
-- Works entirely offline - no sensitive data sent to external services
+- Automatically identify PHI (Protected Health Information) in EHR text
+- Remove or mask patient identifiers, medical record numbers, and dates
+- Generate de-identified datasets for research and testing
+- Maintain data utility while ensuring regulatory compliance
 
 ## Tech Stack
 
-- **LLM**: Gemma 3 (via Ollama)
-- **Backend**: FastAPI
-- **Frontend**: Streamlit
-- **Language**: Python 3.9+
-- **Architecture**: 100% Local, Privacy-First
+- **Python 3.10+** — Core application logic
+- **FastAPI** — High-performance API backend
+- **Streamlit** — Interactive user interface
+- **Ollama** — Local LLM runtime (ollama.com)
+- **Gemma 3** — Google's open, efficient language model
 
 ## Quick Start
 
-### Prerequisites
-- Python 3.9 or higher
-- [Ollama](https://ollama.com) installed and running
-- 8GB+ RAM recommended
-- GPU optional but recommended for faster inference
-
-### Installation Steps
-
-1. **Clone the repository**
-   `ash
+1. **Clone the repository:**
+   ```bash
    git clone https://github.com/kennedyraju55/ehr-deidentifier.git
    cd ehr-deidentifier
-   `
+   ```
 
-2. **Install dependencies**
-   `ash
+2. **Install dependencies:**
+   ```bash
    pip install -r requirements.txt
-   `
+   ```
 
-3. **Start Ollama** (in a separate terminal)
-   `ash
-   ollama run gemma3
-   `
+3. **Pull the Gemma 3 model:**
+   ```bash
+   ollama pull gemma3:4b
+   ```
 
-4. **Run the application**
-   `ash
+4. **Run the application:**
+   ```bash
    streamlit run app.py
-   `
-
-The application will be available at http://localhost:8501
+   ```
 
 ## Architecture
 
-\\\
-User Input
-    ↓
-  Streamlit UI
-    ↓
-  FastAPI Backend
-    ↓
-  Ollama + Gemma 3
-    ↓
-  Local Response (No Cloud)
-\\\
-
-Everything runs locally on your machine. No external API calls. No data leaves your device.
+```
+User Interface (Streamlit)
+         ↓
+   FastAPI Backend
+         ↓
+   Ollama Runtime
+         ↓
+   Gemma 3 Model
+         ↓
+   Response Generation
+```
 
 ## Why Local?
 
-De-identification is a critical step in preparing healthcare data for research, training, and secondary use. Sending sensitive EHRs to cloud services for processing defeats the purpose of de-identification. Running locally ensures patient records are de-identified on-premises before any data sharing, maintaining privacy compliance and institutional control.
+De-identifying sensitive medical records requires maximum privacy assurance. Running Gemma 3 locally with Ollama ensures no PHI leaves your secure environment during the de-identification process.
 
-**Key Benefits:**
-- ✅ **Compliant**: Meets HIPAA, GDPR, and institutional privacy requirements
-- ✅ **Offline**: Works without internet connection
-- ✅ **Fast**: No network latency, instant local inference
-- ✅ **Secure**: Healthcare data never leaves your control
-- ✅ **Custom**: Fine-tune models on your institution's data
+### Key Privacy Benefits:
 
-## Configuration
-
-See config.py for customizable settings:
-- Model parameters
-- Batch processing options
-- Output formats
-- Privacy settings
+- **No External Calls** — All processing happens on your machine
+- **No Data Transmission** — Sensitive information never leaves your infrastructure
+- **Full Control** — You own and manage your data and model
+- **Offline Capable** — Run completely disconnected from the internet
 
 ## Contributing
 
-We welcome contributions! Please:
+Contributions are welcome! Please:
 
 1. Fork the repository
-2. Create a feature branch (\git checkout -b feature/amazing-feature\)
-3. Commit your changes (\git commit -m 'Add amazing feature'\)
-4. Push to the branch (\git push origin feature/amazing-feature\)
+2. Create a feature branch (\git checkout -b feature/your-feature\)
+3. Commit your changes (\git commit -m 'Add your feature'\)
+4. Push to the branch (\git push origin feature/your-feature\)
 5. Open a Pull Request
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details
+MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-**Part of 114+ privacy-first AI tools by Nrk Raju**
+Part of [114+ privacy-first AI tools](https://github.com/kennedyraju55) by Nrk Raju
